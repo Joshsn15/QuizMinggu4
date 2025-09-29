@@ -22,96 +22,104 @@ public class App {
         System.out.println("0. Exit");
         int menu = sc.nextInt();
         sc.nextLine();
-        
-        switch (menu) {
+        boolean input = true;
+        while (input) {
 
-            case 1:
-                System.out.println("1. Sphere\n2. Cylinder\n3. Cuboid\n4. Cube");
-                int menu3D = sc.nextInt();
-                sc.nextLine();
+            switch (menu) {
 
-                switch (menu3D) {
-                    case 1:
-                        
-                        System.out.println("Radius Sphere : ");
-                        int rSphere = sc.nextInt();
-                        sc.nextLine();
+                case 1:
+                    System.out.println("1. Sphere\n2. Cylinder\n3. Cuboid\n4. Cube");
+                    int menu3D = sc.nextInt();
+                    sc.nextLine();
 
-                        Sphere sphere = new Sphere(toString(shapeName.SPHERE), rSphere);
-                        name.add(toString(shapeName.SPHERE));
-                        volume.add(sphere.getVolume());
-                        surface.add(sphere.getSurfaceArea());
+                    switch (menu3D) {
+                        case 1:
 
-                        break;
-                    case 2:
+                            System.out.println("Radius Sphere : ");
+                            int rSphere = sc.nextInt();
+                            sc.nextLine();
 
-                        System.out.println("Radius Cylinder : ");
-                        int rCylinder = sc.nextInt();
-                        System.out.println("Tinggi Cylinder : ");
-                        int hCylinder = sc.nextInt();
-                        sc.nextLine();
-                        Cylinder cylinder = new Cylinder(toString(shapeName.CYLINDER), rCylinder, hCylinder);
-                        name.add(toString(shapeName.CYLINDER));
-                        volume.add(cylinder.getVolume());
-                        surface.add(cylinder.getSurfaceArea());
+                            Sphere sphere = new Sphere(toString(shapeName.SPHERE), rSphere);
+                            name.add(toString(shapeName.SPHERE));
+                            volume.add(sphere.getVolume());
+                            surface.add(sphere.getSurfaceArea());
 
-                        break;
-                    case 3:
-                        System.out.println("Width Cuboid : ");
-                        int wCuboid = sc.nextInt();
-                        System.out.println("Height Cuboid : ");
-                        int hCuboid = sc.nextInt();
-                        System.out.println("Length Cuboid : ");
-                        int lCuboid = sc.nextInt();
-                        sc.nextLine();
-                        Cuboid cuboid = new Cuboid(toString(shapeName.CUBOID), wCuboid, hCuboid, lCuboid);
-                        name.add(toString(shapeName.CUBOID));
-                        volume.add(cuboid.getVolume());
-                        surface.add(cuboid.getSurfaceArea());
+                            break;
+                        case 2:
 
-                        break;
-                    case 4:
-                        System.out.println("Side Cube : ");
-                        int sCube = sc.nextInt();
-                        sc.nextLine();
-                        Cube cube = new Cube(toString(shapeName.CUBE), sCube);
-                        name.add(toString(shapeName.CUBE));
-                        volume.add(cube.getVolume());
-                        surface.add(cube.getSurfaceArea());
+                            System.out.println("Radius Cylinder : ");
+                            int rCylinder = sc.nextInt();
+                            System.out.println("Tinggi Cylinder : ");
+                            int hCylinder = sc.nextInt();
+                            sc.nextLine();
+                            Cylinder cylinder = new Cylinder(toString(shapeName.CYLINDER), rCylinder, hCylinder);
+                            name.add(toString(shapeName.CYLINDER));
+                            volume.add(cylinder.getVolume());
+                            surface.add(cylinder.getSurfaceArea());
 
-                        break;
-                }
+                            break;
+                        case 3:
+                            System.out.println("Width Cuboid : ");
+                            int wCuboid = sc.nextInt();
+                            System.out.println("Height Cuboid : ");
+                            int hCuboid = sc.nextInt();
+                            System.out.println("Length Cuboid : ");
+                            int lCuboid = sc.nextInt();
+                            sc.nextLine();
+                            Cuboid cuboid = new Cuboid(toString(shapeName.CUBOID), wCuboid, hCuboid, lCuboid);
+                            name.add(toString(shapeName.CUBOID));
+                            volume.add(cuboid.getVolume());
+                            surface.add(cuboid.getSurfaceArea());
 
-            default:
-                break;
-            case 2:
-                for (int i = 0; i < name.size(); i++) {
-                    System.out.println("Name:" + name.get(i) + "Volume: " + volume.get(i) + "Surface: " + surface.get(i));
-                }
-                break;
-            case 0:
-                break;
-            
+                            break;
+                        case 4:
+                            System.out.println("Side Cube : ");
+                            int sCube = sc.nextInt();
+                            sc.nextLine();
+                            Cube cube = new Cube(toString(shapeName.CUBE), sCube);
+                            name.add(toString(shapeName.CUBE));
+                            volume.add(cube.getVolume());
+                            surface.add(cube.getSurfaceArea());
+
+                            break;
+                    }
+
+                default:
+                    break;
+                case 2:
+                    printAll(name, volume, surface);
+                    sc.nextLine();
+                    break;
+                case 0:
+                    input = false;
+                    break;
+
+            }
+        }
+
+    }
+
+    static void printAll(ArrayList<String> name, ArrayList<Double> volume, ArrayList<Double> surface) {
+        for (int i = 0; i < name.size(); i++) {
+            System.out.println("Name:" + name.get(i) + "Volume: " + volume.get(i) + "Surface: " + surface.get(i));
         }
     }
-    private static String toString(shapeName sphere) {
-        if(shapeName.SPHERE == sphere){
+
+    private static String toString(shapeName shape) {
+        if (shapeName.SPHERE == shape) {
             return "SPHERE";
-        }
-        else if(shapeName.CYLINDER == sphere){
+        } else if (shapeName.CYLINDER == shape) {
             return "CYLINDER";
-        }
-        else if(shapeName.CUBOID == sphere){
+        } else if (shapeName.CUBOID == shape) {
             return "CUBOID";
-        }
-        else if(shapeName.CUBE == sphere){
+        } else if (shapeName.CUBE == shape) {
             return "CUBE";
-        }
-        else{
+        } else {
             return "FALSE";
         }
     }
-    enum shapeName{
+
+    enum shapeName {
         SPHERE,
         CYLINDER,
         CUBOID,
