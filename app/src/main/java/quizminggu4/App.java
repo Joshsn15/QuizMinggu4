@@ -3,12 +3,118 @@
  */
 package quizminggu4;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        ArrayList<String> name = new ArrayList<>();
+        ArrayList<Double> volume = new ArrayList<>();
+        ArrayList<Double> surface = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Menu:");
+        System.out.println("1. Add new 3d Object");
+        System.out.println("2. Print all");
+        System.out.println("0. Exit");
+        int menu = sc.nextInt();
+        sc.nextLine();
+        
+        switch (menu) {
+
+            case 1:
+                System.out.println("1. Sphere\n2. Cylinder\n3. Cuboid\n4. Cube");
+                int menu3D = sc.nextInt();
+                sc.nextLine();
+
+                switch (menu3D) {
+                    case 1:
+                        
+                        System.out.println("Radius Sphere : ");
+                        int rSphere = sc.nextInt();
+                        sc.nextLine();
+
+                        Sphere sphere = new Sphere(toString(shapeName.SPHERE), rSphere);
+                        name.add(toString(shapeName.SPHERE));
+                        volume.add(sphere.getVolume());
+                        surface.add(sphere.getSurfaceArea());
+
+                        break;
+                    case 2:
+
+                        System.out.println("Radius Cylinder : ");
+                        int rCylinder = sc.nextInt();
+                        System.out.println("Tinggi Cylinder : ");
+                        int hCylinder = sc.nextInt();
+                        sc.nextLine();
+                        Cylinder cylinder = new Cylinder(toString(shapeName.CYLINDER), rCylinder, hCylinder);
+                        name.add(toString(shapeName.CYLINDER));
+                        volume.add(cylinder.getVolume());
+                        surface.add(cylinder.getSurfaceArea());
+
+                        break;
+                    case 3:
+                        System.out.println("Width Cuboid : ");
+                        int wCuboid = sc.nextInt();
+                        System.out.println("Height Cuboid : ");
+                        int hCuboid = sc.nextInt();
+                        System.out.println("Length Cuboid : ");
+                        int lCuboid = sc.nextInt();
+                        sc.nextLine();
+                        Cuboid cuboid = new Cuboid(toString(shapeName.CUBOID), wCuboid, hCuboid, lCuboid);
+                        name.add(toString(shapeName.CUBOID));
+                        volume.add(cuboid.getVolume());
+                        surface.add(cuboid.getSurfaceArea());
+
+                        break;
+                    case 4:
+                        System.out.println("Side Cube : ");
+                        int sCube = sc.nextInt();
+                        sc.nextLine();
+                        Cube cube = new Cube(toString(shapeName.CUBE), sCube);
+                        name.add(toString(shapeName.CUBE));
+                        volume.add(cube.getVolume());
+                        surface.add(cube.getSurfaceArea());
+
+                        break;
+                }
+
+            default:
+                break;
+            case 2:
+                for (int i = 0; i < name.size(); i++) {
+                    System.out.println("Name:" + name.get(i) + "Volume: " + volume.get(i) + "Surface: " + surface.get(i));
+                }
+                break;
+            case 0:
+                break;
+            
+        }
+    }
+    private static String toString(shapeName sphere) {
+        if(shapeName.SPHERE == sphere){
+            return "SPHERE";
+        }
+        else if(shapeName.CYLINDER == sphere){
+            return "CYLINDER";
+        }
+        else if(shapeName.CUBOID == sphere){
+            return "CUBOID";
+        }
+        else if(shapeName.CUBE == sphere){
+            return "CUBE";
+        }
+        else{
+            return "FALSE";
+        }
+    }
+    enum shapeName{
+        SPHERE,
+        CYLINDER,
+        CUBOID,
+        CUBE
     }
 }
